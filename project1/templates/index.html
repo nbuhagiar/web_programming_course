@@ -5,8 +5,10 @@
 {% endblock %}
 
 {% block body %}
-    <h1> Welcome to Nick's Book Review Repository! </h1>
-    <h3> Submit a book review </h3>
-    <a href="{{ url_for('register') }}" class="btn btn-primary" role="button"> Register </a>
-    <a href="{{ url_for('login') }}" class="btn btn-primary" role="button"> Login </a>
+    <p align="right">
+    <a href="{{ url_for('register') }}"> Register </a>
+    /
+    <a href="{{ url_for('login') }}"> Login </a>
+    </p>
+    <h1 align="center"> Welcome to Nick's Book Review Repository! </h1>
 {% endblock %}
