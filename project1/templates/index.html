@@ -11,4 +11,23 @@
     <a href="{{ url_for('login') }}"> Login </a>
     </p>
     <h1 align="center"> Welcome to Nick's Book Review Repository! </h1>
+    <h2> Book Search </h2>
+    <h4>
+        Enter in text in at least one of the following to search for a book.
+    </h4>
+    <form>
+        <div class="form-group">
+            <label for="title"> Title </label>
+            <input type="text" class="form-control" id="title" placeholder="Book Title">
+        </div>
+        <div class="form-group">
+            <label for="author"> Author </label>
+            <input type="text" class="form-control" id="author" placeholder="Book Author">
+        </div>
+        <div class="form-group">
+            <label for="isbn"> ISBN </label>
+            <input type="text" class="form-control" id="isbn" placeholder="Book ISBN">
+        </div>
+        <button type="submit" class="btn btn-primary"> Submit </button>
+    </form>
 {% endblock %}

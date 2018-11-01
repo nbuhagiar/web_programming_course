@@ -42,13 +42,6 @@ def login():
     """
     return render_template("login.html")
 
-@app.route("/booksearch")
-def booksearch():
-    """
-    Book search page.
-    """
-    return render_template("booksearch.html")
-
 @app.route("/api/<isbn>/")
 def book_api(isbn):
     """
