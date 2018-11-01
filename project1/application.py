@@ -57,11 +57,6 @@ def search_results():
         AND LOWER(author) LIKE '%' || LOWER(:author) || '%'
         AND LOWER(isbn) LIKE '%' || LOWER(:isbn) || '%'
         """, {"title": title, "author": author, "isbn": isbn}).fetchall()
-    print(request.form)
-    print(title)
-    print(author)
-    print(title)
-    print(results)
     return render_template("search_results.html", results=results)
 
 @app.route("/book/<int:book_index>/")
@@ -71,7 +66,9 @@ def book(book_index):
     """
     book = db.execute("SELECT * FROM book WHERE index = :index", 
         {"index": book_index}).fetchone()
-    return render_template("book.html", book=book)
+    reviews = db.execute("SELECT * FROM review where isbn = :isbn", 
+        {"isbn": book.isbn})
+    return render_template("book.html", book=book, reviews=reviews)
 
 @app.route("/api/<isbn>/")
 def book_api(isbn):
