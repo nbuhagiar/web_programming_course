@@ -6,12 +6,16 @@
 
 {% block body %}
     <h2> Book Search Results </h2>
-    <ul>
-        {% for result in results %}
-            <li>
-                <a href="#"> {{ result.title }} by {{ result.author }} (ISBN: {{ result.isbn }}) </a>
-            </li>
-        {% endfor %}
-    </ul>
+    {% if results %}
+        <ul>
+            {% for result in results %}
+                <li>
+                    <a href="#"> {{ result.title }} by {{ result.author }} (ISBN: {{ result.isbn }}) </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p> No results found. </p>
+    {% endif %}
     <a href="{{ url_for('index') }}" class="btn btn-primary" role="button"> Go Back </a>
 {% endblock %}
