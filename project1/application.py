@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session, render_template, jsonify
+from flask import Flask, session, render_template, request, jsonify
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -20,8 +20,7 @@ Session(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
-@app.route("/")
-@app.route("/home/")
+@app.route("/", methods=["GET", "POST"])
 def index():
     """
     Home page.
@@ -41,6 +40,28 @@ def login():
     User login page.
     """
     return render_template("login.html")
+
+@app.route("/search_results", methods=["GET", "POST"])
+def search_results():
+    """
+    Search results page.
+    """
+    title = request.form.get("title")
+    author = request.form.get("author")
+    isbn = request.form.get("isbn")
+    results = db.execute("""
+        SELECT *
+        FROM book
+        WHERE LOWER(title) LIKE '%' || LOWER(:title) || '%'
+        AND LOWER(author) LIKE '%' || LOWER(:author) || '%'
+        AND LOWER(isbn) LIKE '%' || LOWER(:isbn) || '%'
+        """, {"title": title, "author": author, "isbn": isbn}).fetchall()
+    print(request.form)
+    print(title)
+    print(author)
+    print(title)
+    print(results)
+    return render_template("search_results.html", results=results)
 
 @app.route("/api/<isbn>/")
 def book_api(isbn):
