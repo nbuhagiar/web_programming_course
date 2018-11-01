@@ -46,6 +46,7 @@ def search_results():
     """
     Search results page.
     """
+
     title = request.form.get("title")
     author = request.form.get("author")
     isbn = request.form.get("isbn")
@@ -62,6 +63,15 @@ def search_results():
     print(title)
     print(results)
     return render_template("search_results.html", results=results)
+
+@app.route("/book/<int:book_index>/")
+def book(book_index):
+    """
+    Book page.
+    """
+    book = db.execute("SELECT * FROM book WHERE index = :index", 
+        {"index": book_index}).fetchone()
+    return render_template("book.html", book=book)
 
 @app.route("/api/<isbn>/")
 def book_api(isbn):

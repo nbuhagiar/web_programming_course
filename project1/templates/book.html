@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Nick's Book Review Repository - {{ book.title }}
+{% endblock %}
+
+{% block body %}
+    <h2> {{ book.title }} </h2>
+    <h4> Author: {{ book.author }} </h4>
+    <h4> Publication Year: {{ book.year }} </h4>
+    <h4> ISBN: {{ book.isbn }} </h4>
+{% endblock %}
