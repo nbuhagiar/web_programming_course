@@ -10,7 +10,7 @@
     /
     <a href="{{ url_for('login') }}"> Login </a>
     </p>
-    <h1 align="center"> Nick's Book Review Repository </h1>
+    <h1 align="center"><a href="{{ url_for('index') }}"> Nick's Book Review Repository </a></h1>
     <h2> Book Search Results </h2>
     {% if results %}
         <ul>
@@ -23,5 +23,4 @@
     {% else %}
         <p> No results found. </p>
     {% endif %}
-    <a href="{{ url_for('index') }}" class="btn btn-primary" role="button"> Go Back </a>
 {% endblock %}

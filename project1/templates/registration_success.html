@@ -2,13 +2,13 @@
 
 {% block title %}
     Nick's Book Review Repository - Success!
-{% end block %}
+{% endblock %}
 
 {% block body %}
-    <h1 align="center"> Nick's Book Review Repository </h1>
+    <h1 align="center"><a href="{{ url_for('index') }}"> Nick's Book Review Repository </a></h1>
     <h2> Success! </h2>
     Thank you for joining our community! You are now registered. Login to start reviewing books!
-
+    <br><br>
     <a href="{{ url_for('login') }}" class="btn btn-primary" role="button"> Login </a>
 
 {% endblock %}

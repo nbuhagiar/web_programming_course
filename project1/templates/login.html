@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1 align="center"> Nick's Book Review Repository </h1>
+    <h1 align="center"><a href="{{ url_for('index') }}"> Nick's Book Review Repository </a></h1>
     <h2> User Login </h2>
     <form>
         <div class="form-group">
@@ -16,7 +16,6 @@
             <label for="password"> Password </label>
             <input type="password" class="form-control" id="password" name="password" placeholder="Password">
         </div>
-        <a href="{{ url_for('index') }}" class="btn btn-primary" role="button"> Go Back </a>
         <button type="submit" class="btn btn-primary"> Submit </button>
     </form>
 {% endblock %}

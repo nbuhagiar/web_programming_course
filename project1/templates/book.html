@@ -10,7 +10,7 @@
     /
     <a href="{{ url_for('login') }}"> Login </a>
     </p>
-    <h1 align="center"> Nick's Book Review Repository </h1>
+    <h1 align="center"><a href="{{ url_for('index') }}"> Nick's Book Review Repository </a></h1>
     <h2> {{ book.title }} </h2>
     <h4> Author: {{ book.author }} </h4>
     <h4> Publication Year: {{ book.year }} </h4>
@@ -28,5 +28,4 @@
         {% endfor %}
     {% endif %}
     <br><br>
-    <a href="{{ url_for('index') }}" class="btn btn-primary" role="button"> New search </a>
 {% endblock %}
