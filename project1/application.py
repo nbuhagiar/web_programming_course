@@ -90,6 +90,10 @@ def book_api(isbn):
     
     book = db.execute("SELECT * FROM book WHERE isbn = :isbn", 
         {"isbn": isbn}).fetchone()
+    resp = requests.get("https://www.goodreads.com/book/review_counts.json", 
+        params=dict(key=key, isbns=book.isbn)).json()
+    mean_rating = resp["books"][0]["average_rating"]
+    num_ratings = resp["books"][0]["ratings_count"]
     if not book:
         return jsonify({"error": "Invalid ISBN"}), 404
     else:
@@ -97,5 +101,7 @@ def book_api(isbn):
             "title": book.title,
             "author": book.author,
             "year": book.year,
-            "isbn": book.isbn
+            "isbn": book.isbn,
+            "Goodreads-mean_rating": mean_rating,
+            "Goodreads-num_rating": num_ratings
             })
