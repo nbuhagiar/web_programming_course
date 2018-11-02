@@ -1,0 +1,1 @@
+The attribution for 'Icono_Normativa.png' is By Raúl Ruano Ruiz [CC BY-SA 3.0  (https://creativecommons.org/licenses/by-sa/3.0)], from Wikimedia Commons. It's page URL is https://commons.wikimedia.org/wiki/File:Icono_Normativa.png and it's file URL is https://upload.wikimedia.org/wikipedia/commons/e/ef/Icono_Normativa.png
