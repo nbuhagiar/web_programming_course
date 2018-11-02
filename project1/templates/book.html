@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block body %}
+    <p align="right">
+    <a href="{{ url_for('register') }}"> Register </a>
+    /
+    <a href="{{ url_for('login') }}"> Login </a>
+    </p>
     <h1 align="center"> Nick's Book Review Repository </h1>
     <h2> {{ book.title }} </h2>
     <h4> Author: {{ book.author }} </h4>
