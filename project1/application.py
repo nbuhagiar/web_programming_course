@@ -67,7 +67,7 @@ def book(book_index):
     book = db.execute("SELECT * FROM book WHERE index = :index", 
         {"index": book_index}).fetchone()
     reviews = db.execute("SELECT * FROM review where isbn = :isbn", 
-        {"isbn": book.isbn})
+        {"isbn": book.isbn}).fetchall()
     return render_template("book.html", book=book, reviews=reviews)
 
 @app.route("/api/<isbn>/")

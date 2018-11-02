@@ -10,9 +10,13 @@
     <h4> Publication Year: {{ book.year }} </h4>
     <h4> ISBN: {{ book.isbn }} </h4>
     <h3> Reviews </h3>
-    {% for review in reviews %}
-        <li>
-            review
-        </li>
-    {% endfor %}
+    {% if reviews|length == 0 %}
+        No reviews yet.
+    {% else %}
+        {% for review in reviews %}
+            <li>
+                review
+            </li>
+        {% endfor %}
+    {% endif %}
 {% endblock %}
