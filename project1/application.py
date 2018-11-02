@@ -83,13 +83,13 @@ def search_results():
         """, {"title": title, "author": author, "isbn": isbn}).fetchall()
     return render_template("search_results.html", results=results)
 
-@app.route("/book/<int:book_index>/")
-def book(book_index):
+@app.route("/book/<int:book_id>/")
+def book(book_id):
     """
     Book page.
     """
-    book = db.execute("SELECT * FROM book WHERE index = :index", 
-        {"index": book_index}).fetchone()
+    book = db.execute("SELECT * FROM book WHERE id = :id", 
+        {"id": book_id}).fetchone()
     reviews = db.execute("SELECT * FROM review where isbn = :isbn", 
         {"isbn": book.isbn}).fetchall()
     resp = requests.get("https://www.goodreads.com/book/review_counts.json", 
