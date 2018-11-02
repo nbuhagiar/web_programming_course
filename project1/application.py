@@ -38,6 +38,26 @@ def register():
     """
     return render_template("register.html")
 
+@app.route("/register/success/", methods=["POST"])
+def registration_success():
+    """
+    New User registration success page.
+    """
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+    if db.execute("SELECT * FROM member WHERE username = :username",
+        {"username": username}).rowcount != 0:
+        return render_template("error.html", 
+            message="A user with that username already exits.")
+    else:
+        db.execute("""
+            INSERT INTO member (username, password)
+            VALUES (:username, :password)
+            """, {"username": username, "password": password})
+        db.commit()
+        return render_template("registration_success.html")
+
 @app.route("/login/")
 def login():
     """

@@ -5,11 +5,17 @@
 {% endblock %}
 
 {% block body %}
-    <p align="right">
-    <a href="{{ url_for('register') }}"> Register </a>
-    /
-    <a href="{{ url_for('login') }}"> Login </a>
-    </p>
+    {% if username %}
+        <p align="right">
+            foo
+        </p>
+    {% else %}
+        <p align="right">
+            <a href="{{ url_for('register') }}"> Register </a>
+            /
+            <a href="{{ url_for('login') }}"> Login </a>
+            </p>
+    {% endif %}
     <h1 align="center"> Nick's Book Review Repository </h1>
     <h1 align="center"> Welcome! </h1>
     <img src="{{ url_for('static', filename='Icono_Normativa.png') }}" class="center-block" style="width:20%">

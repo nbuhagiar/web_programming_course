@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Nick's Book Review Repository - Success!
+{% end block %}
+
+{% block body %}
+    <h1 align="center"> Nick's Book Review Repository </h1>
+    <h2> Success! </h2>
+    Thank you for joining our community! You are now registered. Login to start reviewing books!
+
+    <a href="{{ url_for('login') }}" class="btn btn-primary" role="button"> Login </a>
+
+{% endblock %}
