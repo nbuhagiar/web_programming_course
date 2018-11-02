@@ -5,10 +5,13 @@
 {% endblock %}
 
 {% block body %}
+    <h1 align="center"> Nick's Book Review Repository </h1>
     <h2> {{ book.title }} </h2>
     <h4> Author: {{ book.author }} </h4>
     <h4> Publication Year: {{ book.year }} </h4>
     <h4> ISBN: {{ book.isbn }} </h4>
+    <h4> Goodreads - Average Rating: {{ mean_rating }}</h4>
+    <h4> Goodreads - Number of Ratings: {{ num_ratings }}</h4>
     <h3> Reviews </h3>
     {% if reviews|length == 0 %}
         No reviews yet.

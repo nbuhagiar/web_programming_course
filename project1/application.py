@@ -4,6 +4,7 @@ from flask import Flask, session, render_template, request, jsonify
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+import requests
 
 app = Flask(__name__)
 
@@ -19,6 +20,9 @@ Session(app)
 # Set up database
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
+
+# Set up Goodreads API key
+key = os.getenv("API_KEY")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -68,7 +72,15 @@ def book(book_index):
         {"index": book_index}).fetchone()
     reviews = db.execute("SELECT * FROM review where isbn = :isbn", 
         {"isbn": book.isbn}).fetchall()
-    return render_template("book.html", book=book, reviews=reviews)
+    resp = requests.get("https://www.goodreads.com/book/review_counts.json", 
+        params=dict(key=key, isbns=book.isbn)).json()
+    mean_rating = resp["books"][0]["average_rating"]
+    num_ratings = resp["books"][0]["ratings_count"]
+    return render_template("book.html",
+        book=book,
+        reviews=reviews,
+        mean_rating=mean_rating,
+        num_ratings=num_ratings)
 
 @app.route("/api/<isbn>/")
 def book_api(isbn):
